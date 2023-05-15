@@ -4,6 +4,7 @@ import { addCucumberPreprocessorPlugin } from "@badeball/cypress-cucumber-prepro
 import createEsbuildPlugin from "@badeball/cypress-cucumber-preprocessor/esbuild";
 
 export default defineConfig({
+  projectId: "98d3m5",
   e2e: {
     baseUrl: "https://www.saucedemo.com",
     excludeSpecPattern: [
