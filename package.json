@@ -23,16 +23,16 @@
     "nonGlobalStepDefinitions": true,
     "stepDefinitions": "cypress/e2e/step_definitions/**/*.steps.{js,ts}",
     "messages": {
-      "enabled": true,
+      "enabled": false,
       "output": "cucumber-reports/message.ndjson"
     },
     "json": {
       "enabled": true,
-      "output": "cucumber-reports/log.json",
+      "output": "cucumber-report.json",
       "formater": "cucumber-json-formatter.exe"
     },
     "html": {
-      "enabled": true,
+      "enabled": false,
       "output": "cucumber-reports/report.html"
     }
   }
