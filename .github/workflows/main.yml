@@ -12,11 +12,12 @@ jobs:
       # and run all Cypress tests
       - name: Export scenarios from Xray and generate .feature file(s)
         run: |
-          FEATURES_FILE=features.zip
-          rm -f $FEATURES_FILE
-          curl -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }}  "${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/export/test?keys=AP-1&fz=true" -o $FEATURES_FILE
-          rm -f features/*.feature
-          unzip -o $FEATURES_FILE  -d features
+          BASE_URL=https://xray.cloud.getxray.app
+          KEYS="AP-2;AP-3"
+          token=$(curl -H "Content-Type: application/json" -X POST --data @"cloud_auth.json" $BASE_URL/api/v2/authenticate| tr -d '"')
+          curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "$BASE_URL/api/v2/export/cucumber?keys=$KEYS" -o features.zip
+          rm -rf features/*.feature
+          unzip -o features.zip -d features
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
