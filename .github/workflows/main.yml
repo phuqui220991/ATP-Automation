@@ -22,6 +22,9 @@ jobs:
           curl -H "Content-Type: application/json" -X GET -H "Authorization: Bearer $token" "$BASE_URL/api/v2/export/cucumber?keys=$KEYS" -o features.zip
           rm -rf features/*.feature
           unzip -o features.zip -d features
+      - name: debug feature file
+        run: |
+          cat features/1_AP-1.feature
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
@@ -30,6 +33,9 @@ jobs:
           record: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: debug cucumber report file
+        run: |
+          cat cucumber-report.json
       - name: Import results to Xray (cloud) using multipart endpoint
         run: |
           BASE_URL=https://xray.cloud.getxray.app
