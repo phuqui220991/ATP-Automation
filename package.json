@@ -22,18 +22,10 @@
   "cypress-cucumber-preprocessor": {
     "nonGlobalStepDefinitions": true,
     "stepDefinitions": "cypress/e2e/step_definitions/**/*.steps.{js,ts}",
-    "messages": {
-      "enabled": false,
-      "output": "cucumber-reports/message.ndjson"
-    },
     "json": {
       "enabled": true,
       "output": "cucumber-report.json",
       "formatter": "/usr/local/bin/cucumber-json-formatter"
-    },
-    "html": {
-      "enabled": false,
-      "output": "cucumber-reports/report.html"
     }
   }
 }
