@@ -6,18 +6,18 @@ Given('I am on the login page', () => {
 })
 
 When(
-  'I enter valid credentials (username: {string}, password: {string})',
-  (Username: string, Password: string) => {
-    loginPage.enterEmail(Username)
-    loginPage.enterPassword(Password)
+  'I enter valid credentials \\(username: {string}, password: {string}\\)',
+  (username: string, password: string) => {
+    loginPage.enterEmail(username)
+    loginPage.enterPassword(password)
   }
 )
 
 When(
-  'I enter invalid credentials (username: {string}, password: {string})',
-  (Username: string, Password: string) => {
-    loginPage.enterEmail(Username)
-    loginPage.enterPassword(Password)
+  'I enter invalid credentials \\(username: {string}, password: {string}\\)',
+  (username: string, password: string) => {
+    loginPage.enterEmail(username)
+    loginPage.enterPassword(password)
   }
 )
 
