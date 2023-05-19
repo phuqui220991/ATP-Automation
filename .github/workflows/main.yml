@@ -25,13 +25,21 @@ jobs:
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
-          command: npx cypress run --record --spec 'features/**/*.feature'
-          record: true
+          command: npx cypress run --spec 'features/**/*.feature'
+          #command: npx cypress run --record --spec 'features/**/*.feature'
+          record: false
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
+      - name: Generate auxiliary JSON to define some fields on the Test Execution to be created
+        run: |
+          cat testexec_cloud_template.json  | sed s/PROJECT_KEY/"AP"/g | sed s/TEST_ENVIRONMENT_NAME/"Chrome"/g | sed s/TESTPLAN_KEY/"AP-6"/g > test_exec.json
+      - name: debug testexec json
+        run: |
+          cat test_exec.json
       - name: Import results to Xray (cloud) using multipart endpoint
         run: |
+          cat cucumber-report.json
           BASE_URL=https://xray.cloud.getxray.app
           FILE=cucumber-report.json
           token=$(curl -H "Content-Type: application/json" -X POST --data @"cloud_auth.json" "$BASE_URL/api/v1/authenticate"| tr -d '"')
-          curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token"  --data @"$FILE" "$BASE_URL/api/v1/import/execution/cucumber"
+          curl -H "Content-Type: application/json" -X POST -H "Authorization: Bearer $token" -F info=@test_exec.json -F results=@"$FILE" "$BASE_URL/api/v1/import/execution/cucumber/multipart"
