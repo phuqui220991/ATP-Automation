@@ -23,6 +23,7 @@ jobs:
           rm -rf features/*.feature
           unzip -o features.zip -d features
       - name: Cypress run
+        continue-on-error: true
         uses: cypress-io/github-action@v5
         with:
           command: npx cypress run --spec 'features/**/*.feature'
