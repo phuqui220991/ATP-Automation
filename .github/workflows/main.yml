@@ -6,6 +6,10 @@ jobs:
   cypress-run:
     runs-on: ubuntu-latest
     steps:
+      - name: Download cucumber-json-format tool
+        run: |
+          wget https://github.com/cucumber/json-formatter/releases/download/v19.0.0/cucumber-json-formatter-linux-amd64 -O /usr/local/bin/cucumber-json-formatter
+          chmod +x /usr/local/bin/cucumber-json-formatter
       - name: Checkout
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly

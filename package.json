@@ -29,7 +29,7 @@
     "json": {
       "enabled": true,
       "output": "cucumber-report.json",
-      "formater": "cucumber-json-formatter.exe"
+      "formatter": "/usr/local/bin/cucumber-json-formatter"
     },
     "html": {
       "enabled": false,
