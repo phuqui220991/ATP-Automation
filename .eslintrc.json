@@ -1,0 +1,17 @@
+{
+  "root": true,
+  "parser": "@typescript-eslint/parser",
+  "plugins": ["@typescript-eslint", "cypress"],
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "env": {
+    "browser": true,
+    "cypress/globals": true
+  },
+  "rules": {
+    // Add additional rules or override default rules as needed
+  }
+}

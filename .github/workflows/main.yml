@@ -10,6 +10,13 @@ jobs:
         uses: actions/checkout@v3
       # Install NPM dependencies, cache them correctly
       # and run all Cypress tests
+      - name: Export scenarios from Xray and generate .feature file(s)
+        run: |
+          FEATURES_FILE=features.zip
+          rm -f $FEATURES_FILE
+          curl -u ${{ secrets.JIRASERVER_USERNAME }}:${{ secrets.JIRASERVER_PASSWORD }}  "${{ secrets.JIRASERVER_BASE_URL }}/rest/raven/2.0/export/test?keys=AP-1&fz=true" -o $FEATURES_FILE
+          rm -f features/*.feature
+          unzip -o $FEATURES_FILE  -d features
       - name: Cypress run
         uses: cypress-io/github-action@v5
         with:
