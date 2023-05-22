@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "test:env": "echo"
   },
   "author": "CodeHQ",
   "license": "ISC",
@@ -25,7 +26,7 @@
     "json": {
       "enabled": true,
       "output": "cucumber-report.json",
-      "formatter": "/usr/local/bin/cucumber-json-formatter"
+      "formatter": "cucumber-json-formatter.exe"
     }
   }
 }
