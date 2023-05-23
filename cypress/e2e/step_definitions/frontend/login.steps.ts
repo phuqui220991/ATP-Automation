@@ -32,3 +32,7 @@ Then('I should see an error message is {string}', (message: string) => {
 Then('I should be redirected to the home page', () => {
   cy.url().should('contain', 'https://www.saucedemo.com/inventory.html')
 })
+
+Then('I should not be redirected to the home page', () => {
+  cy.url().should('contain', 'https://www.saucedemo.com/')
+})
